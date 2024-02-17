@@ -1,6 +1,21 @@
 version: "3.8"
 
 services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    tty: true
+    stdin_open: true
+    ports:
+      - "3000:5173"
+    volumes:
+      - type: bind
+        source: ./client/src
+        target: /usr/app/src
+    depends_on:
+      - server
+
   server:
     build:
       context: ./server
@@ -8,8 +23,8 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - 80:80
+      - "80:80"
     volumes:
       - type: bind
-        source: server/src
+        source: ./server/src
         target: /go/app/src

@@ -13,6 +13,6 @@ COPY go.mod go.sum .air.toml ./
 RUN go mod download
 
 EXPOSE 80
-//TODO: ホットリロード導入
+# TODO: ホットリロード導入
 # CMD ["air", "-c", ".air.toml"]
 CMD ["go","run","src/main.go"]
